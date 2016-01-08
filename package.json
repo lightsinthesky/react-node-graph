@@ -1,6 +1,6 @@
 {
   "name": "react-node-graph",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "UI for rendering Node Graphs.",
   "main": "lib/index.js",
   "peerDependencies": {
