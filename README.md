@@ -40,3 +40,12 @@ and passed to our component
             onNewConnector={(n1,o,n2,i)=>this.onNewConnector(n1,o,n2,i)} />
 
 ```
+
+#### Events:
+
+OnNodeMove : triggered on a completed node drag
+
+onNodeStartMove : triggered at the start of a node move
+
+onNewConnector : triggered when a new connection is made
+
