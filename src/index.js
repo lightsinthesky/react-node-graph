@@ -15,16 +15,19 @@ export default class index extends React.Component {
 			source : [],
 			dragging: false
 		}
+
+		this.onMouseMove = this.onMouseMove.bind(this);
+		this.onMouseUp = this.onMouseUp.bind(this);
 	}
 
 	componentDidMount() {
-		document.addEventListener('mousemove', (e)=>this.onMouseMove(e));
-		document.addEventListener('mouseup', (e)=>this.onMouseUp(e));
+		document.addEventListener('mousemove', this.onMouseMove);
+		document.addEventListener('mouseup', this.onMouseUp);
 	}
 
 	componentWillUnmount() {
-		document.removeEventListener('mousemove', (e)=>this.onMouseMove(e));
-		document.removeEventListener('mouseup', (e)=>this.onMouseUp(e));
+		document.removeEventListener('mousemove', this.onMouseMove);
+		document.removeEventListener('mouseup', this.onMouseUp);
 	}
 
 	onMouseUp(e) {
