@@ -16,7 +16,7 @@ export default class NodeOutputList extends React.Component {
 			    <ul className="nodeOutputList">
 					{this.props.items.map((item) => {
 						return (
-							<NodeOutputListItem onMouseDown={(i)=>this.onMouseDown(i)} index={i++} item={item} />
+							<NodeOutputListItem onMouseDown={(i)=>this.onMouseDown(i)} key={i} index={i++} item={item} />
 						)
 					})}
 				</ul>

@@ -15,16 +15,19 @@ export default class index extends React.Component {
 			source : [],
 			dragging: false
 		}
+
+		this.onMouseMove = this.onMouseMove.bind(this);
+		this.onMouseUp = this.onMouseUp.bind(this);
 	}
 
 	componentDidMount() {
-		document.addEventListener('mousemove', (e)=>this.onMouseMove(e));
-		document.addEventListener('mouseup', (e)=>this.onMouseUp(e));
+		document.addEventListener('mousemove', this.onMouseMove);
+		document.addEventListener('mouseup', this.onMouseUp);
 	}
 
 	componentWillUnmount() {
-		document.removeEventListener('mousemove', (e)=>this.onMouseMove(e));
-		document.removeEventListener('mouseup', (e)=>this.onMouseUp(e));
+		document.removeEventListener('mousemove', this.onMouseMove);
+		document.removeEventListener('mouseup', this.onMouseUp);
 	}
 
 	onMouseUp(e) {
@@ -33,14 +36,19 @@ export default class index extends React.Component {
 
 	onMouseMove(e) {
 		e.stopPropagation();
-  	e.preventDefault();
+  		e.preventDefault();
+
+  		const {svgComponent: {refs: {svg}}} = this.refs;
+
+  		//Get svg element position to substract offset top and left 
+  		const svgRect = svg.getBoundingClientRect();
 
 		this.setState({
-      mousePos: {
-        x: e.pageX,
-        y: e.pageY
-      }
-    });
+	      mousePos: {
+	        x: e.pageX - svgRect.left,
+	        y: e.pageY - svgRect.top
+	      }
+	    });
 	}
 
 	handleNodeStart(nid) {
@@ -123,6 +131,8 @@ export default class index extends React.Component {
               			 />
 		}
 
+		let splineIndex = 0;
+
 		return (
 			<div>
 				{nodes.map((node)=> {
@@ -133,8 +143,9 @@ export default class index extends React.Component {
     								title={node.type}
     								inputs={node.fields.in}
     								outputs={node.fields.out}
-    								pos={{x : node.x, y: node.y}} 
-    								
+    								pos={{x : node.x, y: node.y}}
+    								key={node.nid} 
+
     								onNodeStart={(nid)=>this.handleNodeStart(nid)}
     								onNodeStop={(nid, pos)=>this.handleNodeStop(nid, pos)}
     								onNodeMove={(index,pos)=>this.handleNodeMove(index,pos)}
@@ -146,7 +157,7 @@ export default class index extends React.Component {
 				
 				{/* render our connectors */} 
 
-				<SVGComponent height="100%" width="100%">
+				<SVGComponent height="100%" width="100%" ref="svgComponent">
 
 					{connectors.map((connector)=> {
 						let fromNode = this.getNodebyId(nodes,connector.from_node);
@@ -154,10 +165,11 @@ export default class index extends React.Component {
 
 						let splinestart = computeOutOffsetByIndex(fromNode.x, fromNode.y, this.computePinIndexfromLabel(fromNode.fields.out, connector.from));
 						let splineend = computeInOffsetByIndex(toNode.x, toNode.y, this.computePinIndexfromLabel(toNode.fields.in, connector.to));
-							
+
 						return <Spline 
 							start={splinestart}
 							end={splineend}
+							key={splineIndex++}
 						/>
 
 					})}
