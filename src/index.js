@@ -33,14 +33,19 @@ export default class index extends React.Component {
 
 	onMouseMove(e) {
 		e.stopPropagation();
-  	e.preventDefault();
+  		e.preventDefault();
+
+  		const {svgComponent: {refs: {svg}}} = this.refs;
+
+  		//Get svg element position to substract offset top and left 
+  		const svgRect = svg.getBoundingClientRect();
 
 		this.setState({
-      mousePos: {
-        x: e.pageX,
-        y: e.pageY
-      }
-    });
+	      mousePos: {
+	        x: e.pageX - svgRect.left,
+	        y: e.pageY - svgRect.top
+	      }
+	    });
 	}
 
 	handleNodeStart(nid) {
@@ -149,7 +154,7 @@ export default class index extends React.Component {
 				
 				{/* render our connectors */} 
 
-				<SVGComponent height="100%" width="100%">
+				<SVGComponent height="100%" width="100%" ref="svgComponent">
 
 					{connectors.map((connector)=> {
 						let fromNode = this.getNodebyId(nodes,connector.from_node);
