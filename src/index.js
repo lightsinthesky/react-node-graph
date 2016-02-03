@@ -166,7 +166,7 @@ export default class index extends React.Component {
 						return <Spline 
 							start={splinestart}
 							end={splineend}
-							key={btoa(JSON.stringify(connector))}
+							key={splineIndex++}
 						/>
 
 					})}
