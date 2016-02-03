@@ -16,7 +16,7 @@ export default class NodeInputList extends React.Component {
 				<ul className="nodeInputList">
 					{this.props.items.map((item) => {
 						return (
-							<NodeInputListItem onMouseUp={(i)=>this.onMouseUp(i)}  index={i++} item={item} />
+							<NodeInputListItem onMouseUp={(i)=>this.onMouseUp(i)} key={i} index={i++} item={item} />
 						)
 					})}
 				</ul>

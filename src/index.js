@@ -123,6 +123,8 @@ export default class index extends React.Component {
               			 />
 		}
 
+		let splineIndex = 0;
+
 		return (
 			<div>
 				{nodes.map((node)=> {
@@ -133,8 +135,9 @@ export default class index extends React.Component {
     								title={node.type}
     								inputs={node.fields.in}
     								outputs={node.fields.out}
-    								pos={{x : node.x, y: node.y}} 
-    								
+    								pos={{x : node.x, y: node.y}}
+    								key={node.nid} 
+
     								onNodeStart={(nid)=>this.handleNodeStart(nid)}
     								onNodeStop={(nid, pos)=>this.handleNodeStop(nid, pos)}
     								onNodeMove={(index,pos)=>this.handleNodeMove(index,pos)}
@@ -154,10 +157,11 @@ export default class index extends React.Component {
 
 						let splinestart = computeOutOffsetByIndex(fromNode.x, fromNode.y, this.computePinIndexfromLabel(fromNode.fields.out, connector.from));
 						let splineend = computeInOffsetByIndex(toNode.x, toNode.y, this.computePinIndexfromLabel(toNode.fields.in, connector.to));
-							
+
 						return <Spline 
 							start={splinestart}
 							end={splineend}
+							key={btoa(JSON.stringify(connector))}
 						/>
 
 					})}
