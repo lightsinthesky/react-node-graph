@@ -1,5 +1,4 @@
 import React from 'react';
-import SVGComponent from './SVGComponent';
 
 export default class Spline extends React.Component {
     render() {
