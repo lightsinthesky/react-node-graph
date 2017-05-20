@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 // import ReactNodeGraph from 'react-node-graph'; 
 
-import ReactNodeGraph from '../lib/';
+import ReactNodeGraph from '../src/';
 
 var exampleGraph = {
   "nodes":[
