@@ -146,7 +146,22 @@ body {
     box-sizing: border-box;
 }
 .nodeInputList li a i {
-	padding-right: 5px;
+	padding-right: 6px;
+}
+
+.dragging .nodeInputList li a i.hover {
+	vertical-align: top;
+	font-size: 15px;
+	color: #ffffff;
+	margin-top: 2px;
+	margin-left: -2px;
+	padding-right: 3px;
+}
+
+.dragging .nodeInputList li a i.hover + span {
+	vertical-align: top;
+	font-weight: bold;
+	color: #ffffff;
 }
 
 .inputDot {
