@@ -86,6 +86,12 @@ export default class index extends React.Component {
 		this.setState({dragging:false});
 	}
 
+	handleRemoveConnector(connector) {
+		if (this.props.onRemoveConnector) {
+			this.props.onRemoveConnector(connector);
+		}
+	}
+
 	computePinIndexfromLabel(pins, pinLabel) {
 		let reval = 0;
 
@@ -115,6 +121,7 @@ export default class index extends React.Component {
 	render() {
 		let nodes = this.state.data.nodes;
 		let connectors = this.state.data.connections;
+    let { mousePos } = this.state;
 
 		let i = 0;
 		let newConnector = null;
@@ -170,6 +177,8 @@ export default class index extends React.Component {
 							start={splinestart}
 							end={splineend}
 							key={splineIndex++}
+							mousePos={mousePos}
+							onRemove={() => {this.handleRemoveConnector(connector)}}
 						/>
 
 					})}

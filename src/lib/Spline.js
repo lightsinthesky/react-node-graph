@@ -1,8 +1,47 @@
 import React from 'react';
-import SVGComponent from './SVGComponent';
+import onClickOutside from 'react-onclickoutside';
 
-export default class Spline extends React.Component {
+import TrashIcon from './TrashIcon';
+
+
+class Spline extends React.Component {
+    constructor(props) {
+      super(props)
+      this.state = {
+        selected: false,
+        position: { x: 0, y: 0 }
+      }
+    }
+
+    handleClick(e) {
+      this.setState({
+        selected: !this.state.selected,
+        position: this.props.mousePos
+      });
+
+      if (this.props.onClick) {
+        this.props.onClick(e);
+      }
+    }
+
+    handleClickOutside(e) {
+      this.setState({selected: false});
+
+      if (this.props.onClickOutside) {
+        this.props.onClickOutside(e);
+      }
+    }
+
+    handleRemove(e) {
+      this.setState({selected: false});
+
+      if (this.props.onRemove) {
+        this.props.onRemove(e);
+      }
+    }
+
     render() {
+        let {selected, position} = this.state;
 
         let {start, end} = this.props;
 
@@ -17,14 +56,22 @@ export default class Spline extends React.Component {
                                           end.x ,                   // end x
                                           end.y);                   // end y
 
+        let className = 'connector' + (selected ? ' selected' : '');
+
         return (
                 <g>
                 <circle cx={start.x} cy={start.y} r="3"  fill="#337ab7" />
                 <circle cx={end.x} cy={end.y} r="3"  fill="#9191A8" />
-                <path className="connector" d={pathString} />
+                <path className="connector-click-area" d={pathString} onClick={(e) => {this.handleClick(e)}} />
+                <path className={className} d={pathString} onClick={(e) => {this.handleClick(e)}} />
+                { selected ?
+                    <TrashIcon position={position}
+                               onClick={(e) => {this.handleRemove(e)}}
+                    />
+                : null }
                 </g>
-                
-        
+
+
         );
     }
 
@@ -36,3 +83,5 @@ export default class Spline extends React.Component {
         return Math.sqrt( (b[0] - a[0]) * (b[0] - a[0]) + (b[1] - a[1]) * (b[1] - a[1]) );
     }
 }
+
+export default onClickOutside(Spline)
