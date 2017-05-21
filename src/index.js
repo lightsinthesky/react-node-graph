@@ -30,6 +30,10 @@ export default class index extends React.Component {
 		document.removeEventListener('mouseup', this.onMouseUp);
 	}
 
+	componentWillReceiveProps(nextProps) {
+		this.setState({data: nextProps.data});
+	}
+
 	onMouseUp(e) {
 		this.setState({dragging:false, });
 	}

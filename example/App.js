@@ -39,19 +39,23 @@ export default class App extends Component {
   }
 
   onNewConnector(fromNode,fromPin,toNode,toPin) {
-   let conn = this.state.connections.push({
-      "from_node" : fromNode,
-      "from" : fromPin,
-      "to_node" : toNode,
-      "to" : toPin
-    });
+    let connections = [...this.state.connections, {
+      from_node : fromNode,
+      from : fromPin,
+      to_node : toNode,
+      to : toPin
+    }]
+
+    this.setState({connections: connections})
   }
 
   onRemoveConnector(connector) {
-    // TODO: These state changes should be immutable
-    this.state.connections = this.state.connections.filter((connection) => {
+    let connections = [...this.state.connections]
+    connections = connections.filter((connection) => {
       return connection != connector
     })
+
+    this.setState({connections: connections})
   }
 
   onNodeMove(nid, pos) { 
