@@ -41,7 +41,7 @@ body {
 }
 
 .node-header {
-
+	cursor: all-scroll;
 
 	background: rgba(248,80,50,1);
 	
@@ -128,16 +128,37 @@ body {
     margin-bottom: 10px;
 }
 
+.nodeOutputList li {
+	cursor: pointer;
+}
+
 .nodeOutputList li a {
 	font-size:10px;
 	text-decoration: none;
     background: transparent;
     box-sizing: border-box;
     color: #337ab7;
+}
 
+.nodeOutputList li a i {
+	padding-left: 6px;
+}
+
+.nodeOutputList li:hover a i {
+	vertical-align: top;
+	font-size: 15px;
+	margin-top: 3px;
+	margin-right: -2px;
+	padding-left: 3px;
+}
+
+.nodeOutputList li:hover a {
+	vertical-align: top;
+	font-weight: bold;
 }
 
 .nodeInputList li a {
+	cursor: default;
 	font-size:10px;
 	color: #999999;
     display: block;
