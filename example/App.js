@@ -47,6 +47,13 @@ export default class App extends Component {
     });
   }
 
+  onRemoveConnector(connector) {
+    // TODO: These state changes should be immutable
+    this.state.connections = this.state.connections.filter((connection) => {
+      return connection != connector
+    })
+  }
+
   onNodeMove(nid, pos) { 
     console.log('end move : ' + nid, pos)
   }
@@ -61,7 +68,9 @@ export default class App extends Component {
             data={this.state} 
             onNodeMove={(nid, pos)=>this.onNodeMove(nid, pos)}
             onNodeStartMove={(nid)=>this.onNodeStartMove(nid)}
-            onNewConnector={(n1,o,n2,i)=>this.onNewConnector(n1,o,n2,i)} />
+            onNewConnector={(n1,o,n2,i)=>this.onNewConnector(n1,o,n2,i)}
+            onRemoveConnector={(connector)=>this.onRemoveConnector(connector)}
+          />
       );      
   }
 }

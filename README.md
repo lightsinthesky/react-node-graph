@@ -37,7 +37,9 @@ and passed to our component
             data={exampleGraph} 
             onNodeMove={(nid, pos)=>this.onNodeMove(nid, pos)}
             onNodeStartMove={(nid)=>this.onNodeStartMove(nid)}
-            onNewConnector={(n1,o,n2,i)=>this.onNewConnector(n1,o,n2,i)} />
+            onNewConnector={(n1,o,n2,i)=>this.onNewConnector(n1,o,n2,i)} 
+            onRemoveConnector={(connector)=>this.onRemoveConnector(connector)}
+/>
 
 ```
 
@@ -49,3 +51,4 @@ onNodeStartMove : triggered at the start of a node move
 
 onNewConnector : triggered when a new connection is made
 
+onRemoveConnector : triggered when a connection is removed

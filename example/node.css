@@ -64,14 +64,49 @@ body {
 }
 
 .connector {
-	fill:none; 
+	fill:none;
 	stroke:#dadada; 
-	stroke-width:1;
+	stroke-width:2;
 	-webkit-box-shadow: 6px 6px 28px -2px rgba(0,0,0,0.75);
 	-moz-box-shadow: 6px 6px 28px -2px rgba(0,0,0,0.75);
 	box-shadow: 6px 6px 28px -2px rgba(0,0,0,0.75);
 	    -webkit-filter: drop-shadow( -5px -5px 5px #000 );
             filter: drop-shadow( -5px -5px 5px #000 );
+}
+
+.connector-click-area {
+	cursor: pointer;
+	fill:none;
+	stroke:transparent;
+	stroke-width:15;
+}
+
+.connector-click-area:hover + .connector,
+.connector:hover {
+	cursor: pointer;
+	stroke-width: 4;
+}
+
+.connector.selected {
+	stroke: #337ab7;
+}
+
+.trash-icon .trash-icon-trashcan {
+    opacity: 0.8;
+}
+
+.trash-icon:hover {
+    cursor: pointer;
+}
+
+.trash-icon:hover .trash-icon-bg {
+    stroke:#337ab7;
+    stroke-width: 2;
+    opacity: 0.5;
+}
+
+.trash-icon:hover .trash-icon-trashcan {
+    opacity: 1;
 }
 
 .nodeInputWrapper {
