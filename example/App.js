@@ -66,6 +66,14 @@ export default class App extends Component {
     console.log('start move : ' + nid)
   }
 
+  handleNodeSelect(nid) {
+    console.log('node selected : ' + nid)
+  }
+
+  handleNodeDeselect(nid) {
+    console.log('node deselected : ' + nid)
+  }
+
   render() {
       return (
           <ReactNodeGraph 
@@ -74,6 +82,8 @@ export default class App extends Component {
             onNodeStartMove={(nid)=>this.onNodeStartMove(nid)}
             onNewConnector={(n1,o,n2,i)=>this.onNewConnector(n1,o,n2,i)}
             onRemoveConnector={(connector)=>this.onRemoveConnector(connector)}
+            onNodeSelect={(nid) => {this.handleNodeSelect(nid)}}
+            onNodeDeselect={(nid) => {this.handleNodeDeselect(nid)}}
           />
       );      
   }

@@ -96,6 +96,18 @@ export default class index extends React.Component {
 		}
 	}
 
+  handleNodeSelect(nid) {
+		if (this.props.onNodeSelect) {
+			this.props.onNodeSelect(nid);
+		}
+  }
+
+  handleNodeDeselect(nid) {
+    if (this.props.onNodeDeselect) {
+      this.props.onNodeDeselect(nid);
+    }
+  }
+
 	computePinIndexfromLabel(pins, pinLabel) {
 		let reval = 0;
 
@@ -163,7 +175,10 @@ export default class index extends React.Component {
     								
     								onStartConnector={(nid, outputIndex)=>this.handleStartConnector(nid, outputIndex)}
     								onCompleteConnector={(nid, inputIndex)=>this.handleCompleteConnector(nid, inputIndex)}
-    								/>
+
+										onNodeSelect={(nid) => {this.handleNodeSelect(nid)}}
+										onNodeDeselect={(nid) => {this.handleNodeDeselect(nid)}}
+									/>
 				})}
 				
 				{/* render our connectors */} 
