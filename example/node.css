@@ -19,12 +19,18 @@ body {
 .node {
 	position: absolute; 
 	width:180px;
+    border: 1px solid transparent;
 	border-radius: 4px;
 	-webkit-box-shadow: 6px 6px 28px -2px rgba(0,0,0,0.4);
 	-moz-box-shadow: 6px 6px 28px -2px rgba(0,0,0,0.4);
 	box-shadow: 6px 6px 28px -2px rgba(0,0,0,0.4);
-
 	background-color: rgba(0,0,0,.7);
+    user-select: none;
+}
+
+.node.selected {
+    border: 1px solid #666;
+    box-shadow: 0 0 8px 3px #555;
 }
 
 .node-seperator {
