@@ -125,12 +125,12 @@ export default class index extends React.Component {
 	render() {
 		let nodes = this.state.data.nodes;
 		let connectors = this.state.data.connections;
-    let { mousePos } = this.state;
+    let { mousePos, dragging } = this.state;
 
 		let i = 0;
 		let newConnector = null;
 
-		if (this.state.dragging) {
+		if (dragging) {
 
 			let sourceNode = this.getNodebyId(nodes, this.state.source[0]);
 			let connectorStart = computeOutOffsetByIndex(sourceNode.x, sourceNode.y, this.state.source[1]);
@@ -145,7 +145,7 @@ export default class index extends React.Component {
 		let splineIndex = 0;
 
 		return (
-			<div>
+			<div className={dragging ? 'dragging' : ''} >
 				{nodes.map((node)=> {
 					return <Node 
     								index={i++} 
