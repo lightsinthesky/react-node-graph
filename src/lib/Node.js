@@ -67,7 +67,7 @@ class Node extends React.Component {
           onStop={(event, ui)=>this.handleDragStop(event, ui)}
           onDrag={(event, ui)=>this.handleDrag(event, ui)}>
         <section className={nodeClass} style={{zIndex:10000}}>
-            <header className="node-header" style={{backgroundColor:this.props.color}}>
+            <header className="node-header">
               <span className="node-title">{this.props.title}</span>
             </header>
             <div className="node-content">

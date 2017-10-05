@@ -162,7 +162,6 @@ export default class index extends React.Component {
 					return <Node 
     								index={i++} 
     								nid={node.nid}
-    								color="#000000"
     								title={node.type}
     								inputs={node.fields.in}
     								outputs={node.fields.out}
