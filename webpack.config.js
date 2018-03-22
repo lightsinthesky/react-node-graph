@@ -1,28 +1,23 @@
-var path = require('path');
-var webpack = require('webpack');
-
 module.exports = {
-  devtool: 'cheap-module-eval-source-map',
-  entry: [
-    'webpack-dev-server/client?http://0.0.0.0:8080',
-    'webpack/hot/only-dev-server',
-    './example/index.js'
-  ],
-  output: {
-    path: __dirname + '/example/',
-    filename: 'all.js',
-    publicPath: '/example'
-  },
-  plugins: [
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin()
-  ],
+  entry: ["./src/index.js"],
   module: {
-    loaders: [{
-      test: /\.js$/,
-      loaders: ['react-hot', 'babel'],
-      exclude: /node_modules/,
-      include: __dirname
-    }]
+    rules: [
+      {
+        test: /\.(js|jsx)$/,
+        exclude: /node_modules/,
+        use: ["babel-loader"]
+      }
+    ]
+  },
+  resolve: {
+    extensions: ["*", ".js", ".jsx"]
+  },
+  output: {
+    path: __dirname + "/lib",
+    publicPath: "/",
+    filename: "bundle.js"
+  },
+  devServer: {
+    contentBase: "./lib"
   }
 };
