@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 
-import ReactNodeGraph from '../index-hooks';
+import ReactNodeGraph from '../index';
 
-var exampleGraph = {
+const exampleGraph = {
   "nodes":[
     {"nid":1,"type":"WebGLRenderer","x":1479,"y":351,"fields":{"in":[{"name":"width"},{"name":"height"},{"name":"scene"},{"name":"camera"},{"name":"bg_color"},{"name":"postfx"},{"name":"shadowCameraNear"},{"name":"shadowCameraFar"},{"name":"shadowMapWidth"},{"name":"shadowMapHeight"},{"name":"shadowMapEnabled"},{"name":"shadowMapSoft"}],"out":[]}},
     {"nid":14,"type":"Camera","x":549,"y":478,"fields":{"in":[{"name":"fov"},{"name":"aspect"},{"name":"near"},{"name":"far"},{"name":"position"},{"name":"target"},{"name":"useTarget"}],"out":[{"name":"out"}]}},
@@ -29,60 +29,65 @@ var exampleGraph = {
   ]
 };
 
-export default class App extends Component {
-  
-  constructor(props) {
-    super(props);
-    this.state = exampleGraph;
+export const App = () => {
+  const [state, setState] = useState(exampleGraph);
+
+  const onNewConnector = (fromNode, fromPin, toNode, toPin) => {
+    let connections = [...state.connections, {
+      from_node: fromNode,
+      from: fromPin,
+      to_node: toNode,
+      to: toPin
+    }];
+
+    console.log({...state, ...connections});
+    setState(old => {
+      return {
+        ...old,
+        "connections": connections
+      }
+    });
   }
 
-  onNewConnector(fromNode,fromPin,toNode,toPin) {
-    let connections = [...this.state.connections, {
-      from_node : fromNode,
-      from : fromPin,
-      to_node : toNode,
-      to : toPin
-    }]
+  const onRemoveConnector = (connector) => {
+    let connections = [...state.connections];
+    connections = connections.filter(connection => {
+      return connection !== connector;
+    });
 
-    this.setState({connections: connections})
+    setState(old => {
+      return {
+        ...old,
+        "connections": connections
+      }
+    });
   }
 
-  onRemoveConnector(connector) {
-    let connections = [...this.state.connections]
-    connections = connections.filter((connection) => {
-      return connection != connector
-    })
-
-    this.setState({connections: connections})
+  const onNodeMove = (nid, pos) => {
+    console.log(`end move:`, nid, pos);
   }
 
-  onNodeMove(nid, pos) { 
-    console.log('end move : ' + nid, pos)
+  const onNodeStartMove = nid  => {
+    console.log(`start move:`, nid);
   }
 
-  onNodeStartMove(nid) { 
-    console.log('start move : ' + nid)
+  const handleNodeSelect = nid => {
+    console.log(`node selected:`, nid);
   }
 
-  handleNodeSelect(nid) {
-    console.log('node selected : ' + nid)
+  const handleNodeDeselect = nid => {
+    console.log(`node deselected:`, nid);
   }
 
-  handleNodeDeselect(nid) {
-    console.log('node deselected : ' + nid)
-  }
-
-  render() {
-      return (
-          <ReactNodeGraph 
-            data={this.state} 
-            onNodeMove={(nid, pos)=>this.onNodeMove(nid, pos)}
-            onNodeStartMove={(nid)=>this.onNodeStartMove(nid)}
-            onNewConnector={(n1,o,n2,i)=>this.onNewConnector(n1,o,n2,i)}
-            onRemoveConnector={(connector)=>this.onRemoveConnector(connector)}
-            onNodeSelect={(nid) => {this.handleNodeSelect(nid)}}
-            onNodeDeselect={(nid) => {this.handleNodeDeselect(nid)}}
-          />
-      );      
-  }
+  return <ReactNodeGraph
+            data={state}
+            onNodeMove={(nid, pos) => onNodeMove(nid, pos)}
+            onNodeStartMove={nid => onNodeStartMove(nid)}
+            onNewConnector={(n1, o, n2, i) => onNewConnector(n1, o, n2, i)}
+            onRemoveConnector={connector => onRemoveConnector(connector)}
+            onNodeSelect={nid => handleNodeSelect(nid)}
+            onNodeDeselect={nid => handleNodeDeselect(nid)}
+         />;
 }
+
+export default App;

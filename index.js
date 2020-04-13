@@ -1,8 +1,8 @@
 import React, { useState, useRef } from 'react';
-import { computeOutOffsetByIndex, computeInOffsetByIndex } from './lib-hooks/util-hooks';
+import { computeOutOffsetByIndex, computeInOffsetByIndex } from './lib/Util';
 // import { SVGComponent } from './lib-hooks/svgComp-hooks';
-import Spline from './lib-hooks/spline-hooks';
-import DragNode from './lib-hooks/node-hooks';
+import Spline from './lib/Spline';
+import DragNode from './lib/Node';
 
 const index = ({
     data,
@@ -135,7 +135,7 @@ const index = ({
             y: mousePos.y
         };
 
-        console.log(mousePos);
+        // console.log(mousePos);
         newConn = <Spline
                     start={connectorStart}
                     end={connectorEnd}

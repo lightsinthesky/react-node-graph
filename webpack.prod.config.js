@@ -9,11 +9,7 @@ var path = require('path');
 var config = {
   devtool: 'sourcemap',
   entry: {
-<<<<<<< HEAD
     index: './index-hooks.js'
-=======
-    index: './lib/index.js'
->>>>>>> c639d6321f8348a989b2d7edfd95c5c5565d43f5
   },
   output: {
     path: path.join(__dirname, 'build'),
@@ -24,7 +20,6 @@ var config = {
     libraryTarget: 'umd'
   },
   module: {
-<<<<<<< HEAD
     rules: [
       {
         test: /\.(js|jsx)$/,
@@ -38,16 +33,6 @@ var config = {
   plugins: [],
   resolve: {
     extensions: ['.js', '.jsx']
-=======
-    loaders: [{
-      test: /\.(js|jsx)/,
-      loader: 'babel'
-    }]
-  },
-  plugins: [],
-  resolve: {
-    extensions: ['', '.js', '.jsx']
->>>>>>> c639d6321f8348a989b2d7edfd95c5c5565d43f5
   },
   externals: {
     'react': {
