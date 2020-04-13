@@ -1,0 +1,224 @@
+/* node stuff */
+
+@import url(//fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900,200italic,300italic,400italic,600italic,700italic,900italic);
+
+body {
+    font-family: 'Source Sans Pro', sans-serif;
+    color: #323232;
+    line-height: 20px;
+    overflow-x: hidden;
+    font-size: 14px;
+    font-weight: 400;
+    text-rendering:optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-font-smoothing: antialiased;
+	background: url('gridtile.png');
+}
+
+
+.node {
+	position: absolute; 
+	width:180px;
+    border: 1px solid transparent;
+	border-radius: 4px;
+	-webkit-box-shadow: 6px 6px 28px -2px rgba(0,0,0,0.4);
+	-moz-box-shadow: 6px 6px 28px -2px rgba(0,0,0,0.4);
+	box-shadow: 6px 6px 28px -2px rgba(0,0,0,0.4);
+	background-color: rgba(0,0,0,.7);
+    user-select: none;
+}
+
+.node.selected {
+    border: 1px solid #666;
+    box-shadow: 0 0 8px 3px #555;
+}
+
+.node-seperator {
+	color: black;
+	border-color: black;
+}
+
+.node-content {
+	padding: 10px;
+}
+
+.node-title {
+	font-size:10px;
+}
+
+.node-header {
+	cursor: all-scroll;
+
+	background: rgba(248,80,50,1);
+	
+	padding-left: 10px;
+    text-transform: uppercase;
+
+	border-top-left-radius: 4px;
+	border-top-right-radius: 4px;
+
+	border-bottom: 1px solid #353535;
+
+	padding-top: 3px;
+    height: 23px;
+
+    font-size: 13px;
+    letter-spacing: 1px;
+
+	color:white;
+	font-weight: 600;
+}
+
+.connector {
+	fill:none;
+	stroke:#dadada; 
+	stroke-width:2;
+	-webkit-box-shadow: 6px 6px 28px -2px rgba(0,0,0,0.75);
+	-moz-box-shadow: 6px 6px 28px -2px rgba(0,0,0,0.75);
+	box-shadow: 6px 6px 28px -2px rgba(0,0,0,0.75);
+	    -webkit-filter: drop-shadow( -5px -5px 5px #000 );
+            filter: drop-shadow( -5px -5px 5px #000 );
+}
+
+.connector-click-area {
+	cursor: pointer;
+	fill:none;
+	stroke:transparent;
+	stroke-width:15;
+}
+
+.connector-click-area:hover + .connector,
+.connector:hover {
+	cursor: pointer;
+	stroke-width: 4;
+}
+
+.connector.selected {
+	stroke: #337ab7;
+}
+
+.trash-icon .trash-icon-trashcan {
+    opacity: 0.8;
+}
+
+.trash-icon:hover {
+    cursor: pointer;
+}
+
+.trash-icon:hover .trash-icon-bg {
+    stroke:#337ab7;
+    stroke-width: 2;
+    opacity: 0.5;
+}
+
+.trash-icon:hover .trash-icon-trashcan {
+    opacity: 1;
+}
+
+.nodeInputWrapper {
+	width : 65%;
+	float: left;
+}
+
+.nodeOutputWrapper {
+	width : 35%;
+	float: right;
+	text-align: right;
+}
+
+
+.nodeInputList, .nodeOutputList {
+	list-style: none;
+    padding: 0;
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.nodeOutputList li {
+	cursor: pointer;
+}
+
+.nodeOutputList li a {
+	font-size:10px;
+	text-decoration: none;
+    background: transparent;
+    box-sizing: border-box;
+    color: #337ab7;
+}
+
+.nodeOutputList li a i {
+	padding-left: 6px;
+}
+
+.nodeOutputList li:hover a i {
+	vertical-align: top;
+	font-size: 15px;
+	margin-top: 3px;
+	margin-right: -2px;
+	padding-left: 3px;
+}
+
+.nodeOutputList li:hover a {
+	vertical-align: top;
+	font-weight: bold;
+}
+
+.nodeInputList li a {
+	cursor: default;
+	font-size:10px;
+	color: #999999;
+    display: block;
+    text-decoration: none;
+    background: transparent;
+    box-sizing: border-box;
+}
+.nodeInputList li a i {
+	padding-right: 6px;
+}
+
+.dragging .nodeInputList li a i.hover {
+	vertical-align: top;
+	font-size: 15px;
+	color: #ffffff;
+	margin-top: 2px;
+	margin-left: -2px;
+	padding-right: 3px;
+}
+
+.dragging .nodeInputList li a i.hover + span {
+	vertical-align: top;
+	font-weight: bold;
+	color: #ffffff;
+}
+
+.inputDot {
+	width: 12px;
+    height: 12px;
+    display: inline-block;
+    position: absolute;
+    background: #e6e6e6;
+    border-radius: 50%;
+    top: 0;
+    right: 3px;
+    left: auto;
+    border: 2px solid #fff;
+}
+
+
+.EndPoint { fill:none; stroke:#888888; stroke-width:2 }
+
+.pin-input {
+	    background: transparent;
+    padding: 5px;
+    width: 50px;
+    display: inline-block;
+    margin-left: 16px;
+    border-color: #333333;
+}
+
+.node-menu {
+	display: block;
+	z-index: 10020;
+}
+
+
