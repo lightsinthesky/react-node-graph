@@ -13,6 +13,7 @@ module.exports = {
     filename: 'all.js',
     publicPath: '/example'
   },
+<<<<<<< HEAD
   module: {
     rules: [
       {
@@ -23,5 +24,18 @@ module.exports = {
         }
       }
     ]
+=======
+  plugins: [
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NoErrorsPlugin()
+  ],
+  module: {
+    loaders: [{
+      test: /\.js$/,
+      loaders: ['react-hot', 'babel'],
+      exclude: /node_modules/,
+      include: __dirname
+    }]
+>>>>>>> c639d6321f8348a989b2d7edfd95c5c5565d43f5
   }
 };
