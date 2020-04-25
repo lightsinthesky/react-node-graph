@@ -9,7 +9,7 @@ var path = require('path');
 var config = {
   devtool: 'sourcemap',
   entry: {
-    index: './lib/index.js'
+    index: './index-hooks.js'
   },
   output: {
     path: path.join(__dirname, 'build'),
@@ -20,14 +20,19 @@ var config = {
     libraryTarget: 'umd'
   },
   module: {
-    loaders: [{
-      test: /\.(js|jsx)/,
-      loader: 'babel'
-    }]
+    rules: [
+      {
+        test: /\.(js|jsx)$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader'
+        }
+      }
+    ]
   },
   plugins: [],
   resolve: {
-    extensions: ['', '.js', '.jsx']
+    extensions: ['.js', '.jsx']
   },
   externals: {
     'react': {
